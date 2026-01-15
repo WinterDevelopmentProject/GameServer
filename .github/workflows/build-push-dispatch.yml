@@ -11,7 +11,7 @@ permissions:
 env:
   REGISTRY: ghcr.io
   ORG: WinterDevelopmentProject
-  IMAGE_NAME: ghcr.io/WinterDevelopmentProject/gameserver
+  IMAGE_NAME: ghcr.io/winterdevelopmentproject/gameserver
 
 jobs:
   build_push_and_dispatch:
