@@ -1,0 +1,24 @@
+{
+  "name": "gameserver",
+  "version": "1.0.0",
+  "description": "Backend Server for Web Game, using Express js and Socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WinterDevelopmentProject/GameServer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WinterDevelopmentProject/GameServer/issues"
+  },
+  "homepage": "https://github.com/WinterDevelopmentProject/GameServer#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  }
+}
