@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 // [TEMP] Test App Store
-const store = require("../../temp/memory.store");
+const store = require("../temp/memory.store");
 
 // [TEMP] Global Chat Handler
 // TODO: Refactor to Room-based Chat for Catch Mind

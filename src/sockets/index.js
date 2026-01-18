@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 // [TEMP] Test App Store
-const store = require("../../temp/memory.store");
+const store = require("../temp/memory.store");
 
 const registerRoomHandlers = require("./rooms.socket");
 const registerChatHandlers = require("./chat.socket");
