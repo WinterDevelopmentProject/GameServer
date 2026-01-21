@@ -1,10 +1,10 @@
 // src/app.js : Express 앱 파일 (API 라우팅)
 
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
-const healthRouter = require("./routes/health.route");
-const metaRouter = require("./temp/meta.route");
+import healthRouter from "./routes/health.route.js";
+import metaRouter from "./temp/meta.route.js";
 
 const app = express();
 
@@ -14,4 +14,4 @@ app.use(express.json());
 app.use("/health", healthRouter);
 app.use("/meta", metaRouter);
 
-module.exports = app;
+export default app;

@@ -1,9 +1,9 @@
 // src/server.js : 서버 진입점
 
-const http = require("http");
-const { Server } = require("socket.io");
-const app = require("./app");
-const setupSockets = require("./sockets");
+import http from "http";
+import { Server } from "socket.io";
+import app from "./app.js";
+import setupSockets from "./sockets/index.js";
 
 const server = http.createServer(app);
 
