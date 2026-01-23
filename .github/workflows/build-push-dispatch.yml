@@ -1,8 +1,8 @@
-name: CI - Build & Push (GameServer) + Dispatch deploy
+name: CI - Build & Push (GameServer)
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "dev"]
 
 permissions:
   contents: read
@@ -11,7 +11,6 @@ permissions:
 env:
   REGISTRY: ghcr.io
   ORG: WinterDevelopmentProject
-  IMAGE_NAME: ghcr.io/winterdevelopmentproject/gameserver
 
 jobs:
   build_push_and_dispatch:
@@ -20,6 +19,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set environment variables
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "IMAGE_NAME=ghcr.io/winterdevelopmentproject/gameserver" >> $GITHUB_ENV
+            echo "EVENT_TYPE=deploy-prod" >> $GITHUB_ENV
+          else
+            echo "IMAGE_NAME=ghcr.io/winterdevelopmentproject/gameserver-dev" >> $GITHUB_ENV
+            echo "EVENT_TYPE=deploy-dev" >> $GITHUB_ENV
+          fi
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -50,6 +59,7 @@ jobs:
           INFRA_OWNER: WinterDevelopmentProject
           INFRA_REPO: infra
           IMAGE: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          EVENT_TYPE: ${{ env.EVENT_TYPE }}
         run: |
           set -euo pipefail
 
@@ -58,7 +68,7 @@ jobs:
             -H "Authorization: Bearer ${TOKEN}" \
             https://api.github.com/repos/${INFRA_OWNER}/${INFRA_REPO}/dispatches \
             -d "$(jq -n \
-              --arg event_type "deploy" \
+              --arg event_type "${EVENT_TYPE}" \
               --arg service "backend" \
               --arg image "${IMAGE}" \
               --arg sha "${{ github.sha }}" \
