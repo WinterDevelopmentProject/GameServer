@@ -1,17 +1,17 @@
 // src/app.js : Express 앱 파일 (API 라우팅)
 
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
-const healthRouter = require("./routes/health.route");
-const metaRouter = require("./temp/meta.route");
+import healthRouter from "./routes/health.route.js";
+import roomsRouter from "./routes/rooms.route.js";
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // 동일 도메인 외에도 요청 허용
+app.use(express.json()); // 요청 body의 JSON을 자동으로 파싱
 
-app.use("/health", healthRouter);
-app.use("/meta", metaRouter);
+app.use("/health", healthRouter); // 서버 Health Check용
+app.use("/rooms", roomsRouter); // 방 생성 및 조회, 참가 API
 
-module.exports = app;
+export default app;
