@@ -1,6 +1,6 @@
 import express from "express";
 import {createRoom, roomExists} from "../stores/rooms.store.js";
-import {generateRoomCode} from "../utils/room.util.js";
+import {generateRoomCode} from "../utils/roomCode.js";
 
 const router = express.Router();
 

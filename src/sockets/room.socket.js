@@ -1,4 +1,4 @@
-import { roomExists, getRoom, deleteRoom } from "../stores/rooms.store";
+import { roomExists, getRoom, deleteRoom } from "../stores/rooms.store.js";
 
 function emitRoomState(io, roomId){
     const room = getRoom(roomId);
