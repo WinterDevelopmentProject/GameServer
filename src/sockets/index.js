@@ -1,4 +1,4 @@
-import { registerRoomHandlers } from "./room.socket.js";
+import { registerRoomHandlers, registerGameHandlers } from "./room.socket.js";
 import { registerStreamHandlers } from "./stream.socket.js";
 
 // 소켓 이벤트 등록용 함수
@@ -7,6 +7,7 @@ import { registerStreamHandlers } from "./stream.socket.js";
 export default function setupSockets(io) {
   io.on("connection", (socket) => {
     registerRoomHandlers(io, socket);
+    registerGameHandlers(io, socket);
     registerStreamHandlers(io, socket);
   });
 }
